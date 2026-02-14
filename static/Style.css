@@ -1,0 +1,252 @@
+/* Google Fonts Import */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Montserrat:wght@400;700&family=Playfair+Display:wght@400;700&display=swap');
+
+/* Reset and Base Styles */
+* {
+  margin: 10;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Poppins', sans-serif;
+  background-color: #f8f8f8;
+  color: #36454f;
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+/* Header Banner */
+.header {
+  width: 100%;
+  height: 120px;
+  background-image: url('https://source.unsplash.com/featured/?mountains,subtle'); /* Subtle mountain background */
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  position: fixed;
+}
+
+.header-left {
+  flex: 1;
+  /* Intentionally empty for logo/title placeholder */
+}
+
+.header-right {
+  flex: 1;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.search-bar {
+  display: flex;
+  align-items: center;
+  background-color: #ffffff;
+  border-radius: 25px;
+  padding: 8px 15px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  width: 300px;
+  max-width: 100%;
+}
+
+.search-bar input {
+  border: none;
+  outline: none;
+  flex: 1;
+  padding: 5px;
+  font-family: 'Poppins', sans-serif;
+  font-size: 14px;
+  background: transparent;
+}
+
+.search-bar button {
+  background-color: #d4af37;
+  border: none;
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #ffffff;
+  font-size: 14px;
+  transition: background-color 0.3s ease;
+}
+
+.search-bar button:hover {
+  background-color: #b8860b;
+}
+
+/* Mobile Menu Toggle */
+.mobile-menu-toggle {
+  display: none;
+  background: none;
+  border: none;
+  font-size: 24px;
+  color: #ffffff;
+  cursor: pointer;
+  margin-right: 15px;
+}
+
+/* Main Layout */
+.main {
+  display: flex;
+  min-height: calc(100vh - 200px);
+}
+
+/* Sidebar */
+.sidebar {
+  width: 250px;
+  background-color: #001f3f;
+  color: #ffffff;
+  padding: 20px 0;
+  position: fixed;
+  top: 128px;
+  left: 0;
+  height: calc(100vh - 00px);
+  overflow-y: auto;
+  z-index: 100;
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+}
+
+.sidebar ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.sidebar li {
+  margin-bottom: 12px;
+}
+
+.sidebar a {
+  display: block;
+  padding: 23px 30px;
+  color: #ffffff;
+  text-decoration: none;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 400;
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+.sidebar a:hover {
+  background-color: #4169e1;
+  padding-left: 30px;
+}
+
+.sidebar a:hover::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 5px;
+  background-color: #d4af37;
+}
+
+/* Spacer in Sidebar */
+.sidebar-spacer {
+  height: 50px;
+  border-top: 1px solid #36454f;
+  margin: 20px 0;
+}
+
+/* Content Area */
+.content {
+  flex: 1;
+  margin-left: 250px;
+  padding: 20px;
+  background-color: #f8f8f8;
+}
+
+/* Notification Banner */
+.notification-banner {
+  margin:100px;
+  height:70px;
+  width:100%;
+  background-color: #dc3545;
+  color: #ffffff;
+  padding: 15px;
+  text-align: center;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 700;
+  margin-left:0%;
+  margin-top:120px;
+  margin-bottom: 20px;
+  border-radius: 5px;
+}
+
+/* Content Cards */
+.content-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 20px;
+}
+
+.card {
+  margin-top: 300px;
+  background-color: #ffffff;
+  border-radius: 15px;
+  padding: 30px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  min-height: 200px;
+  /* Intentionally empty for future content */
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .header {
+    height: 150px;
+    padding: 0 15px;
+  }
+
+  .search-bar {
+    width: 200px;
+  }
+
+  .mobile-menu-toggle {
+    display: block;
+  }
+
+  .sidebar {
+    transform: translateX(-100%);
+    transition: transform 0.3s ease;
+    width: 250px;
+  }
+
+  .sidebar.open {
+    transform: translateX(0);
+  }
+
+  .content {
+    margin-left: 0;
+  }
+
+  .content-cards {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 480px) {
+  .header {
+    flex-direction: column;
+    height: auto;
+    padding: 15px;
+  }
+
+  .header-right {
+    margin-top: 10px;
+  }
+
+  .search-bar {
+    width: 100%;
+  }
+}

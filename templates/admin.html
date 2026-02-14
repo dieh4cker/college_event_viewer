@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Panel</title>
+    <link rel="stylesheet" href="static/Style.css">
+</head>
+
+<body>
+    <header class="header">
+        <div class="header-left">
+        </div>
+        <div class="header-right">
+            <button class="mobile-menu-toggle" id="mobile-menu-toggle">☰</button>
+            <form class="search-bar" id="search-form">
+                <input type="text" placeholder="Search...">
+                <button type="submit">🔍</button>
+            </form>
+        </div>
+    </header>
+
+    <div class="main">
+        <aside class="sidebar" id="sidebar">
+            <ul>
+                <li><a href="/notice">Notice</a></li>
+                <li><a href="examination.html">Examination</a></li>
+                <li><a href="daily.html">Daily</a></li>
+                <li><a href="studies-admission.html">Studies and Admission</a></li>
+                <li><a href="sports-meet.html">Sports meet</a></li>
+                <li><a href="athletic-meets.html">Athletic meets</a></li>
+                <div class="sidebar-spacer"></div>
+                <li><a href="about.html">About</a></li>
+                <li><a href="admin.html">Admin</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </aside>
+
+        <main class="content">
+            <div class="content-cards">
+                <div class="card">
+                    <form action="/admin"  method="POST">
+                        <label for="fname">First name:</label><br>
+                        <input type="text" id="fname" name="title" value="John"><br>
+                        <label for="lname">Last name:</label><br>
+                        <input type="text" id="lname" name="desc" value="Doe"><br><br>
+                        <input type="submit" value="Submit">
+                    </form>
+                </div>
+            </div>
+
+
+    </div>
+    </div>
+    </main>
+    </div>
+
+    <script>
+        // Mobile sidebar toggle
+        const toggle = document.getElementById('mobile-menu-toggle');
+        const sidebar = document.getElementById('sidebar');
+        toggle.addEventListener('click', () => {
+            sidebar.classList.toggle('open');
+        });
+
+        // Search bar placeholder functionality
+        const searchForm = document.getElementById('search-form');
+        searchForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            alert('Search functionality not implemented yet.');
+        });
+    </script>
+</body>
+
+</html>
