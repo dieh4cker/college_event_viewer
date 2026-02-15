@@ -23,19 +23,27 @@ class Admin(db.Model):
 
 @app.route("/")
 def index():
-    return render_template('index.html')
+    data = Notice.query.all()
+    return render_template('index.html', notices=data)
 
 @app.route("/admin-login", methods=['GET', 'POST'])
 def admin_login():
     if request.method == 'POST':
         email = request.form.get('email') 
-        passwd  = request.form.get('password')
-        print(email)
-        print(passwd)
-        userPass=Admin(email=email , passwd=passwd)
-        db.session.add(userPass)
-        db.session.commit()
+        passwd = request.form.get('password')
+
+        user = Admin.query.filter_by(email=email, passwd=passwd).first()
+
+        if user:
+            return redirect("/admin")
+        else:
+            return "Invalid Email or Password"
+
     return render_template("admin-login.html")
+
+@app.route("/admin")
+def admin():
+    return render_template("admin.html")
 
 @app.route("/notice", methods=['GET', 'POST'])
 def notice():

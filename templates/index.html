@@ -5,7 +5,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>College Envens</title>
-  <link rel="stylesheet" href="static/Style.css">
+  <link rel="stylesheet" href="{{ url_for('static', filename='Style.css') }}">
 </head>
 <body>
   <header class="header">
@@ -41,10 +41,12 @@
         Important Notification: This is a placeholder for announcements.
       </div>
       <div class="content-cards">
-        <div class="card">helow</div>
-        <div class="card"></div>
-        <div class="card"></div>
-        <!-- Add more cards as needed -->
+        {% for notice in notices %}
+        <div class="card">
+          <h1>{{ notice.title }}</h1>
+          <p>{{ notice.desc  }}</p>
+        </div>
+        {% endfor %}
       </div>
     </main>
   </div>
