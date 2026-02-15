@@ -15,12 +15,30 @@ class Notice(db.Model):
     title = db.Column(db.String(200), nullable=False)
     desc = db.Column(db.String(5000), nullable=False)
 
+class Admin(db.Model):
+    __tablename__ = 'admin'
+    id = db.Column(db.Integer, primary_key=True)
+    email = db.Column(db.String(50), nullable=False)
+    passwd = db.Column(db.String(50), nullable=False)
+
 @app.route("/")
 def index():
     return render_template('index.html')
 
+@app.route("/admin-login", methods=['GET', 'POST'])
+def admin_login():
+    if request.method == 'POST':
+        email = request.form.get('email') 
+        passwd  = request.form.get('password')
+        print(email)
+        print(passwd)
+        userPass=Admin(email=email , passwd=passwd)
+        db.session.add(userPass)
+        db.session.commit()
+    return render_template("admin-login.html")
+
 @app.route("/notice", methods=['GET', 'POST'])
-def admin():
+def notice():
     if request.method == 'POST':
         title = request.form.get('title') 
         desc  = request.form.get('desc')
@@ -30,7 +48,7 @@ def admin():
         db.session.add(notice)
         db.session.commit()
         flash("Student updated.", "success")
-        return redirect(url_for('admin'))
+        return redirect(url_for('notice'))
     return render_template("notice.html")
 
 

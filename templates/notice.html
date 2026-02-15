@@ -5,13 +5,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin Panel</title>
-    <link rel="stylesheet" href="static/notice.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='notice.css') }}">
 </head>
 
 <body>
     <header class="header">
         <div class="header-left">
-        </div>
+      <h1> College Event Viewer</h1>
+    </div>
         <div class="header-right">
             <button class="mobile-menu-toggle" id="mobile-menu-toggle">☰</button>
             <form class="search-bar" id="search-form">

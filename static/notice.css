@@ -34,7 +34,8 @@ body {
 
 .header-left {
   flex: 1;
-  /* Intentionally empty for logo/title placeholder */
+  margin-left: 120px;
+  font-size: 20px;
 }
 
 .header-right {

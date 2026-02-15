@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>College Events</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='login.css') }}">
+</head>
+<body>
+
+<div class="container">
+
+  <div class="left">
+    <h1>College Event Viewer</h1>
+    <p>
+      Admin panel for managing college events, notices and activities.
+      Login to access dashboard.
+    </p>
+  </div>
+
+  <div class="right">
+    <div class="login-box">
+      <h2>Admin Login</h2>
+
+      <!-- FORM START -->
+      <form action="/admin-login" method="POST">
+
+        <div class="input-group">
+          <label>Email</label>
+          <input type="email" name="email" placeholder="Enter email" required>
+        </div>
+
+        <div class="input-group">
+          <label>Password</label>
+          <input type="password" name="password" placeholder="Enter password" required>
+        </div>
+
+        <input type="submit" value="Login" class="btn">
+
+      </form>
+      <!-- FORM END -->
+
+    </div>
+  </div>
+
+</div>
+
+</body>
+</html>
