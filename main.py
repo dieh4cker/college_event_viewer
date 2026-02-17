@@ -1,4 +1,4 @@
-from flask import Flask, render_template,request,flash,redirect,url_for
+from flask import Flask, render_template,request,flash,redirect,url_for,session
 from datetime import datetime
 from flask_sqlalchemy import SQLAlchemy
 
@@ -18,6 +18,7 @@ class Notice(db.Model):
 class Admin(db.Model):
     __tablename__ = 'admin'
     id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(50), nullable=False)
     email = db.Column(db.String(50), nullable=False)
     passwd = db.Column(db.String(50), nullable=False)
 
@@ -26,6 +27,7 @@ def index():
     data = Notice.query.all()
     return render_template('index.html', notices=data)
 
+# admin page backend
 @app.route("/admin-login", methods=['GET', 'POST'])
 def admin_login():
     if request.method == 'POST':
@@ -35,6 +37,7 @@ def admin_login():
         user = Admin.query.filter_by(email=email, passwd=passwd).first()
 
         if user:
+            session['admin'] = user.name
             return redirect("/admin")
         else:
             return "Invalid Email or Password"
@@ -43,7 +46,25 @@ def admin_login():
 
 @app.route("/admin")
 def admin():
+    if 'admin' not in session:
+        return redirect("/admin-login")
     return render_template("admin.html")
+
+@app.route("/register-admin", methods=['GET', 'POST'])
+def adminregister():
+    if request.method == 'POST':
+        name = request.form.get('admin_name') 
+        email  = request.form.get('email')
+        passwd  = request.form.get('password')
+        admin_data=Admin(name=name,email=email,passwd=passwd)
+        db.session.add(admin_data)
+        db.session.commit()
+    return render_template("rigester-admin.html")
+
+@app.route("/logout")
+def logout():
+    session.pop('admin', None)
+    return redirect("/admin-login")
 
 @app.route("/notice", methods=['GET', 'POST'])
 def notice():

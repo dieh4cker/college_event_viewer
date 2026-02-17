@@ -20,7 +20,8 @@ body {
 .header {
   width: 100%;
   height: 120px;
-  background-image: url('https://source.unsplash.com/featured/?mountains,subtle'); /* Subtle mountain background */
+  background-image: url('https://source.unsplash.com/featured/?mountains,subtle');
+  /* Subtle mountain background */
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -170,17 +171,17 @@ body {
 
 /* Notification Banner */
 .notification-banner {
-  margin:100px;
-  height:70px;
-  width:100%;
+  margin: 100px;
+  height: 70px;
+  width: 100%;
   background-color: #dc3545;
   color: #ffffff;
   padding: 15px;
   text-align: center;
   font-family: 'Montserrat', sans-serif;
   font-weight: 700;
-  margin-left:0%;
-  margin-top:120px;
+  margin-left: 0%;
+  margin-top: 120px;
   margin-bottom: 20px;
   border-radius: 5px;
 }
@@ -203,67 +204,144 @@ body {
 }
 
 .form {
-    background: #fff;
-    padding: 32px;
-    border-radius: 12px;
-    box-shadow: 0 4px 16px rgba(0,0,0,0.08);
-    max-width: 420px;
-    margin: 40px auto;
+  background: #fff;
+  padding: 32px;
+  border-radius: 12px;
+  box-shadow: 10px 14px 10px rgba(0, 0, 0, 0.1);
+  max-width: 420px;
+  margin: 40px auto;
 }
 
 .form label {
-    font-weight: 600;
-    color: #333;
-    margin-bottom: 8px;
-    display: block;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 8px;
+  display: block;
 }
 
 .form input[type="text"] {
-    width: 180px;
-    padding: 8px;
-    border: 1px solid #ccc;
-    border-radius: 6px;
-    font-size: 15px;
-    margin-bottom: 18px;
-    transition: border-color 0.2s;
+  width: 180px;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 15px;
+  margin-bottom: 18px;
+  transition: border-color 0.2s;
 }
 
 .form input[type="text"]:focus {
-    border-color: #007bff;
-    outline: none;
+  border-color: #007bff;
+  outline: none;
 }
 
 .form textarea {
-    width: 350px;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 6px;
-    font-size: 15px;
-    resize: vertical;
-    margin-bottom: 18px;
-    transition: border-color 0.2s;
+  width: 350px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 15px;
+  resize: vertical;
+  margin-bottom: 18px;
+  transition: border-color 0.2s;
 }
 
 .form textarea:focus {
-    border-color: #007bff;
-    outline: none;
+  border-color: #007bff;
+  outline: none;
 }
 
 .form input[type="submit"] {
-    background: #007bff;
-    color: #fff;
-    border: none;
-    padding: 12px 0;
-    border-radius: 6px;
-    font-size: 16px;
-    font-weight: 600;
-    cursor: pointer;
-    width: 100%;
-    transition: background 0.2s;
+  background: #007bff;
+  color: #fff;
+  border: none;
+  padding: 12px 0;
+  border-radius: 6px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  width: 100%;
+  transition: background 0.2s;
 }
 
 .form input[type="submit"]:hover {
-    background: #0056b3;
+  background: #0056b3;
+}
+
+.admin-form {
+  margin-top: 13rem;
+  margin-left: 25%;
+  width: 390px;
+  height: 480px;
+  background: #ffffff;
+  padding: 30px 35px;
+  border-radius: 12px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+}
+
+.admin-form h2 {
+  text-align: center;
+  margin-bottom: 25px;
+  color: #333;
+}
+
+.input-group {
+  margin-bottom: 18px;
+  position: relative;
+}
+
+.input-group label {
+  font-size: 14px;
+  font-weight: 600;
+  color: #444;
+}
+
+.input-group input {
+  width: 100%;
+  padding: 10px 12px;
+  margin-top: 6px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  transition: 0.2s;
+}
+
+.input-group input:focus {
+  border-color: #007bff;
+  outline: none;
+  box-shadow: 0 0 3px rgba(0, 123, 255, 0.3);
+}
+
+.password-box {
+  position: relative;
+}
+
+.eye {
+  position: absolute;
+  right: 12px;
+  top: 38px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.admin-btn {
+  width: 100%;
+  padding: 12px;
+  background: linear-gradient(135deg, #28a745, #218838);
+  color: white;
+  border: none;
+  border-radius: 7px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.admin-btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.15);
+}
+
+span{
+  margin-right: 5%;
+  font-size: 25px;
 }
 
 /* Responsive Design */

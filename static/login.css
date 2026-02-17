@@ -107,3 +107,10 @@ body{
   background:#574fe0;
   transform:scale(1.03);
 }
+.eye {
+  position: absolute;
+  left: 84rem;
+  top: 31rem;
+  cursor: pointer;
+  font-size: 16px;
+}

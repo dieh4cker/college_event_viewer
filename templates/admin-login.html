@@ -32,7 +32,8 @@
 
         <div class="input-group">
           <label>Password</label>
-          <input type="password" name="password" placeholder="Enter password" required>
+          <input type="password" id="password" name="password" placeholder="Enter password" required>
+           <span class="eye" onclick="togglePassword()">Show</span>
         </div>
 
         <input type="submit" value="Login" class="btn">
@@ -44,6 +45,11 @@
   </div>
 
 </div>
-
+<script>
+function togglePassword() {
+    const pass = document.getElementById("password");
+    pass.type = pass.type === "password" ? "text" : "password";
+}
+</script>
 </body>
 </html>
