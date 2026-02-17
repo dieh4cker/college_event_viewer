@@ -52,6 +52,8 @@ def admin():
 
 @app.route("/register-admin", methods=['GET', 'POST'])
 def adminregister():
+    if 'admin' not in session:
+        return redirect("/admin-login")
     if request.method == 'POST':
         name = request.form.get('admin_name') 
         email  = request.form.get('email')
@@ -63,11 +65,15 @@ def adminregister():
 
 @app.route("/logout")
 def logout():
+    if 'admin' not in session:
+        return redirect("/admin-login")
     session.pop('admin', None)
     return redirect("/admin-login")
 
 @app.route("/notice", methods=['GET', 'POST'])
 def notice():
+    if 'admin' not in session:
+        return redirect("/admin-login")
     if request.method == 'POST':
         title = request.form.get('title') 
         desc  = request.form.get('desc')
