@@ -53,6 +53,9 @@ def athletic():
 # admin page backend
 @app.route("/admin-login", methods=['GET', 'POST'])
 def admin_login():
+    if "admin" in session:
+        return redirect("/admin")
+     
     if request.method == 'POST':
         email = request.form.get('email') 
         passwd = request.form.get('password')
@@ -95,13 +98,14 @@ def logout():
 
 @app.route("/manage-athletic", methods=['GET', 'POST'])
 def add_event():
+    if 'admin' not in session:
+        return redirect("/admin-login")
+    
     if request.method == "POST":
         name = request.form.get('event_name')
         date = request.form.get('event_date')
         time = request.form.get('event_time')
         judges = request.form.get('judges')
-        print(date)
-        print(time)
         event_data=Athletic(eventName=name,date=date,time=time,judges=judges)
         db.session.add(event_data)
         db.session.commit()
@@ -110,6 +114,8 @@ def add_event():
 
 @app.route("/delete-event")
 def manage_event():
+    if 'admin' not in session:
+        return redirect("/admin-login")
     eventdata = Athletic.query.all()
 
     for event in eventdata:
@@ -124,6 +130,8 @@ def manage_event():
 
 @app.route("/delete-event/<int:id>", methods=['GET','POST'])
 def delete_event(id):
+    if 'admin' not in session:
+        return redirect("/admin-login")
     eventdata = Athletic.query.get(id)
     if eventdata:
         db.session.delete(eventdata)
@@ -146,11 +154,15 @@ def notice():
 
 @app.route("/delete-notice")
 def manage_notice():
+    if 'admin' not in session:
+        return redirect("/admin-login")
     notices = Notice.query.all()   
     return render_template("deletenotice.html", notices=notices)
 
 @app.route("/delete-notice/<int:id>", methods=['GET','POST'])
 def delete_notice(id):
+    if 'admin' not in session:
+        return redirect("/admin-login")
     notice = Notice.query.get(id)
     if notice:
         db.session.delete(notice)
