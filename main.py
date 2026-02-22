@@ -86,7 +86,18 @@ def notice():
         return redirect(url_for('notice'))
     return render_template("notice.html")
 
+@app.route("/delete-notice")
+def manage_notice():
+    notices = Notice.query.all()   
+    return render_template("deletenotice.html", notices=notices)
 
+@app.route("/delete-notice/<int:id>", methods=['GET','POST'])
+def delete_notice(id):
+    notice = Notice.query.get(id)
+    if notice:
+        db.session.delete(notice)
+        db.session.commit()
+    return redirect("/delete-notice")
 
 if __name__ == "__main__":
     with app.app_context():

@@ -1,0 +1,34 @@
+{%extends "adminBase.html"%}
+{%block content%}
+<main class="content">
+    <div class="delete-container">
+        <h2>Manage Notices</h2>
+
+        <table class="notice-table">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Title</th>
+                    <th>Description</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for notice in notices %}
+                <tr>
+                    <td>{{ loop.index }}</td>
+                    <td>{{ notice.title }}</td>
+                    <td>{{ notice.desc }}</td>
+                    <td>
+                        <form action="/delete-notice/{{ notice.sno }}" method="POST">
+                            <button class="delete-btn">Delete</button>
+                        </form>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+    </div>
+</main>
+{%endblock%}

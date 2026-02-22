@@ -339,9 +339,74 @@ body {
   box-shadow: 0 5px 10px rgba(0, 0, 0, 0.15);
 }
 
-span{
+span {
   margin-right: 5%;
   font-size: 25px;
+}
+
+#delete-btn {
+  margin-top: 12px;
+  background: red;
+  color: #fff;
+  border: none;
+  padding: 12px 0;
+  border-radius: 6px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  width: 100%;
+  transition: background 0.2s;
+}
+
+.delete-container {
+  width: 90%;
+  margin: 120px;
+  background: #fff;
+  padding: 25px;
+  border-radius: 12px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05);
+}
+
+.delete-container h2 {
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.notice-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.notice-table th {
+  text-align: center;
+  background: #002b5c;
+  color: white;
+  padding: 12px;
+}
+
+.notice-table td {
+  font-size: 22px;
+  text-align: center;
+  padding: 10px;
+  border-bottom: 1px solid #eee;
+}
+
+.notice-table tr:hover {
+  background: #f5f5f5;
+}
+
+.delete-btn {
+  font-size: 19px;
+  padding: 12px 28px;
+  background: #dc3545;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.delete-btn:hover {
+  background: #c82333;
 }
 
 /* Responsive Design */
