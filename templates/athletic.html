@@ -1,0 +1,45 @@
+{%extends "clientBase.html"%}
+{%block title%}Athletics Page{%endblock%}
+{%block content%}
+<main class="content">
+    <div class="event-container">
+
+        <div class="event-header">
+            <h2>🏃 Upcoming Athletics Events</h2>
+            <a href="/event-register">
+                <button class="register-btn">Register Yourself</button>
+            </a>
+        </div>
+
+        <table class="event-table">
+            <thead>
+                <tr>
+                    <th>Sr. No.</th>
+                    <th>Name of Event</th>
+                    <th>Date</th>
+                    <th>Time</th>
+                    <th>Name of Judges</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    {% for event in events %}
+                    <td>{{ loop.index }}</td>
+                    <td>{{ event.eventName}}</td>
+                    <td>{% if previous_date == event.date %}
+                        -Do-
+                        {% else %}
+                        {{ event.formatted_date }}
+                        {% endif %}</td>
+                    <td>{{ event.formatted_time }}</td>
+                    <td>{% for judge in event.judges.split(' ') %}
+                        {{ judge }}<br>
+                        {% endfor %}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+    </div>
+</main>
+{%endblock%}

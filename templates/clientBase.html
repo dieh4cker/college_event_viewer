@@ -6,17 +6,15 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>{%block title%}Home Page{%endblock%}</title>
   <link rel="stylesheet" href="{{ url_for('static', filename='Style.css') }}">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Margarine&display=swap" rel="stylesheet">
 </head>
 <body>
   <header class="header">
     <div class="header-left">
-      <h1> College Event Viewer</h1>
+      <h1> College Event Viewer(Govt.Polytechnic Hamirpur)</h1>
     </div>
-    <div class="header-right">
-      <button class="mobile-menu-toggle" id="mobile-menu-toggle">☰</button>
-      <form class="search-bar" id="search-form">
-        <input type="text" placeholder="Search...">
-        <button type="submit">🔍</button>
       </form>
     </div>
   </header>
@@ -24,11 +22,11 @@
   <div class="main">
     <aside class="sidebar" id="sidebar">
       <ul>
+        <li><a href="/athletic">Athletic</a></li>
+        <li><a href="sports-meet.html">Sports</a></li>
         <li><a href="examination.html">Examination</a></li>
         <li><a href="daily.html">Daily</a></li>
         <li><a href="studies-admission.html">Studies and Admission</a></li>
-        <li><a href="sports-meet.html">Sports meet</a></li>
-        <li><a href="athletic-meets.html">Athletic meets</a></li>
         <div class="sidebar-spacer"></div>
         <li><a href="about.html">About</a></li>
         <li><a href="/admin-login">Admin</a></li>

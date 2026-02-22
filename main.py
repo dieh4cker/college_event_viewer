@@ -22,10 +22,33 @@ class Admin(db.Model):
     email = db.Column(db.String(50), nullable=False)
     passwd = db.Column(db.String(50), nullable=False)
 
+class Athletic(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    eventName = db.Column(db.String(50), nullable=False)
+    date = db.Column(db.String(50), nullable=False)
+    time = db.Column(db.String(50), nullable=False)
+    judges = db.Column(db.String(500), nullable=False)
+
+#client side page 
 @app.route("/")
 def index():
     data = Notice.query.all()
     return render_template('index.html', notices=data)
+
+@app.route("/athletic")
+def athletic():
+    eventdata = Athletic.query.all()
+
+    for event in eventdata:
+        event.formatted_date = datetime.strptime(
+            event.date, "%Y-%m-%d"
+        ).strftime("%d-%m-%Y")
+
+        event.formatted_time = datetime.strptime(
+            event.time, "%H:%M"
+        ).strftime("%I:%M %p")
+    return render_template('athletic.html' , events=eventdata)
+
 
 # admin page backend
 @app.route("/admin-login", methods=['GET', 'POST'])
@@ -70,6 +93,43 @@ def logout():
     session.pop('admin', None)
     return redirect("/admin-login")
 
+@app.route("/manage-athletic", methods=['GET', 'POST'])
+def add_event():
+    if request.method == "POST":
+        name = request.form.get('event_name')
+        date = request.form.get('event_date')
+        time = request.form.get('event_time')
+        judges = request.form.get('judges')
+        print(date)
+        print(time)
+        event_data=Athletic(eventName=name,date=date,time=time,judges=judges)
+        db.session.add(event_data)
+        db.session.commit()
+        return redirect("/manage-athletic")
+    return render_template("athletic-manage.html")
+
+@app.route("/delete-event")
+def manage_event():
+    eventdata = Athletic.query.all()
+
+    for event in eventdata:
+        event.formatted_date = datetime.strptime(
+            event.date, "%Y-%m-%d"
+        ).strftime("%d-%m-%Y")
+
+        event.formatted_time = datetime.strptime(
+            event.time, "%H:%M"
+        ).strftime("%I:%M %p")
+    return render_template("delete-event.html", events=eventdata)
+
+@app.route("/delete-event/<int:id>", methods=['GET','POST'])
+def delete_event(id):
+    eventdata = Athletic.query.get(id)
+    if eventdata:
+        db.session.delete(eventdata)
+        db.session.commit()
+    return redirect("/delete-event")
+
 @app.route("/notice", methods=['GET', 'POST'])
 def notice():
     if 'admin' not in session:
@@ -77,8 +137,6 @@ def notice():
     if request.method == 'POST':
         title = request.form.get('title') 
         desc  = request.form.get('desc')
-        print(title)
-        print(desc) 
         notice=Notice(title=title,desc=desc)
         db.session.add(notice)
         db.session.commit()

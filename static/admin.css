@@ -409,6 +409,128 @@ span {
   background: #c82333;
 }
 
+.admin-event-form {
+    width: 450px;
+    margin: 120px;
+    background: #ffffff;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+}
+
+.admin-event-form h2 {
+    text-align: center;
+    margin-bottom: 25px;
+    color: #002b5c;
+}
+
+.form-group {
+    margin-bottom: 18px;
+}
+
+.form-group label {
+    font-weight: 600;
+    font-size: 14px;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 9px;
+    margin-top: 6px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    transition: 0.2s;
+}
+
+.form-group input:focus {
+    border-color: #ff5722;
+    outline: none;
+    box-shadow: 0 0 4px rgba(255,87,34,0.3);
+}
+
+.event-submit-btn {
+    width: 100%;
+    padding: 12px;
+    background: linear-gradient(135deg, #002b5c, #004080);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.event-submit-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 15px rgba(0,0,0,0.2);
+}
+#atl-delete-btn{
+  margin-top: 5px;
+  width: 100%;
+    padding: 12px;
+    background: red;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+}
+#atl-delete-btn:hover{
+  transform: translateY(-2px);
+    box-shadow: 0 6px 15px rgba(0,0,0,0.2);
+}
+.event-container {
+    width: 95%;
+    margin: 120px 1px;
+    background: #ffffff;
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.05);
+}
+
+.event-container h2 {
+  font-size: 29px;
+    text-align: center;
+    margin-bottom: 20px;
+    color: #002b5c;
+}
+
+.event-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 19px;
+}
+
+.event-table thead {
+    background: #002b5c;
+    color: white;
+}
+
+.event-table th,
+.event-table td {
+    padding: 12px;
+    text-align: center;
+}
+
+.event-table tbody tr {
+    border-bottom: 1px solid #eee;
+    transition: 0.2s;
+}
+
+.event-table tbody tr:hover {
+    background: #f2f7ff;
+}
+
+.event-table th {
+    letter-spacing: 0.5px;
+}
+.event-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
 /* Responsive Design */
 @media (max-width: 768px) {
   .header {

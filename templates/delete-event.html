@@ -1,0 +1,45 @@
+{%extends "adminBase.html"%}
+{%block content%}
+<main class="content">
+    <div class="event-container">
+
+        <div class="event-header">
+            <h2>🏃 Upcoming Athletics Events</h2>   
+        </div>
+
+        <table class="event-table">
+            <thead>
+                <tr>
+                    <th>Sr. No.</th>
+                    <th>Name of Event</th>
+                    <th>Date</th>
+                    <th>Time</th>
+                    <th>Name of Judges</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    {% for event in events %}
+                    <td>{{ loop.index }}</td>
+                    <td>{{ event.eventName}}</td>
+                    <td>{% if previous_date == event.date %}
+                        -Do-
+                        {% else %}
+                        {{ event.formatted_date }}
+                        {% endif %}</td>
+                    <td>{{ event.formatted_time }}</td>
+                    <td>{% for judge in event.judges.split(' ') %}
+                        {{ judge }}<br>
+                        {% endfor %}</td>
+                    <td><form action="/delete-event/{{ event.id }}" method="POST">
+                            <button class="delete-btn">Delete</button>
+                        </form></td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+    </div>
+</main>
+{%endblock%}
