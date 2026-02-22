@@ -32,7 +32,7 @@
                         {{ event.formatted_date }}
                         {% endif %}</td>
                     <td>{{ event.formatted_time }}</td>
-                    <td>{% for judge in event.judges.split(' ') %}
+                    <td>{% for judge in event.judges.split(',') %}
                         {{ judge }}<br>
                         {% endfor %}</td>
                 </tr>

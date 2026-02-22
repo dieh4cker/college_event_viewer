@@ -1,6 +1,7 @@
 {%extends "adminBase.html"%}
 {%block content%}
 <main class="content">
+    <div class="athletic-wrapper">
     <div class="admin-event-form">
         <h2>Add New Athletics Event</h2>
 
@@ -34,5 +35,39 @@
         </form>
         <button id="atl-delete-btn" onclick="window.location.href='/delete-event'">Delete Event</button>
     </div>
+    <div class="csv-upload-container">
+    <h2>Upload Athletic Events (CSV)</h2>
+    <p>Formate:eventName,date,time,judges</p>
+
+    <form action="/manage-athletic" method="POST" enctype="multipart/form-data" class="csv-form">
+        
+        <label class="file-label">
+            Select CSV File
+            <input type="file" id="csvFile" name="csv_file" accept=".csv" required>
+        </label>
+        <p id="file-name" class="file-name">No file selected</p>
+
+        <button type="submit" class="csv-btn">
+            Upload CSV
+        </button>
+
+    </form>
+</div>
+</div>
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+    const fileInput = document.getElementById("csvFile");
+    const fileNameText = document.getElementById("file-name");
+
+    fileInput.addEventListener("change", function () {
+        if (this.files.length > 0) {
+            fileNameText.textContent = this.files[0].name;
+        } else {
+            fileNameText.textContent = "No file selected";
+        }
+    });
+});
+</script>
 </main>
+
 {%endblock%}

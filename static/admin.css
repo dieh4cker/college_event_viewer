@@ -531,6 +531,92 @@ span {
     align-items: center;
     margin-bottom: 20px;
 }
+.csv-upload-container {
+    width: 450px;
+    margin: 120px 12px ;
+    background: #ffffff;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.08);
+    text-align: center;
+}
+
+.csv-upload-container h2 {
+    margin-bottom: 25px;
+    color: #002b5c;
+}
+
+.csv-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.file-label {
+    display: block;
+    padding: 20px;
+    border: 2px dashed #002b5c;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: 0.3s;
+    font-weight: 600;
+    color: #002b5c;
+    background: #f8fbff;
+}
+
+.file-label:hover {
+    background: #e6f0ff;
+}
+
+.file-label input {
+    display: none;
+}
+
+.csv-btn {
+    padding: 12px;
+    background: linear-gradient(135deg, #002b5c, #004080);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.csv-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 15px rgba(0,0,0,0.2);
+}
+.athletic-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 40px; /* dono ke beech space */
+    margin-top: 40px;
+}
+.admin-event-form,
+.csv-upload-container {
+    min-width: 400px;
+}
+p{
+  margin-top:1px;
+  font-size: 16px;
+  font-weight: bold;
+}
+.file-name {
+    font-size: 20px;
+    color: #333;
+    margin-top: -10px;
+    margin-bottom: 10px;
+    font-weight: 500;
+}
+/* Responsive bana dete hain */
+@media (max-width: 900px) {
+    .athletic-wrapper {
+        flex-direction: column;
+        align-items: center;
+    }
+}
 /* Responsive Design */
 @media (max-width: 768px) {
   .header {

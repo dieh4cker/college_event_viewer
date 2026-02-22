@@ -1,6 +1,8 @@
 from flask import Flask, render_template,request,flash,redirect,url_for,session
 from datetime import datetime
 from flask_sqlalchemy import SQLAlchemy
+import csv
+from io import TextIOWrapper
 
 app = Flask(__name__, template_folder="templates", static_folder="static")
 
@@ -96,20 +98,56 @@ def logout():
     session.pop('admin', None)
     return redirect("/admin-login")
 
+import csv
+from io import TextIOWrapper
+
 @app.route("/manage-athletic", methods=['GET', 'POST'])
 def add_event():
+
     if 'admin' not in session:
         return redirect("/admin-login")
-    
+
     if request.method == "POST":
-        name = request.form.get('event_name')
-        date = request.form.get('event_date')
-        time = request.form.get('event_time')
-        judges = request.form.get('judges')
-        event_data=Athletic(eventName=name,date=date,time=time,judges=judges)
-        db.session.add(event_data)
-        db.session.commit()
-        return redirect("/manage-athletic")
+
+        if "csv_file" in request.files:
+
+            file = request.files.get("csv_file")
+
+            if file and file.filename.endswith(".csv"):
+
+                csv_file = TextIOWrapper(file, encoding="utf-8")
+                reader = csv.DictReader(csv_file)
+
+                for row in reader:
+                    new_event = Athletic(
+                        eventName=row["eventName"],
+                        date=row["date"],
+                        time=row["time"],
+                        judges=row["judges"]
+                    )
+                    db.session.add(new_event)
+
+                db.session.commit()
+                return redirect("/manage-athletic")
+
+        else:
+            name = request.form.get('event_name')
+            date = request.form.get('event_date')
+            time = request.form.get('event_time')
+            judges = request.form.get('judges')
+
+            event_data = Athletic(
+                eventName=name,
+                date=date,
+                time=time,
+                judges=judges
+            )
+
+            db.session.add(event_data)
+            db.session.commit()
+
+            return redirect("/manage-athletic")
+
     return render_template("athletic-manage.html")
 
 @app.route("/delete-event")
