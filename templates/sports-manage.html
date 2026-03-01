@@ -3,9 +3,9 @@
 <main class="content">
     <div class="athletic-wrapper">
     <div class="admin-event-form">
-        <h2>Add New Athletics Event</h2>
+        <h2>Add New Sports Event</h2>
 
-        <form action="/manage-athletic" method="POST">
+        <form action="/manage-sports" method="POST">
 
             <div class="form-group">
                 <label>Event Name</label>
@@ -29,17 +29,17 @@
             </div>
 
             <button type="submit" class="event-submit-btn">
-                Add Athletic Event
+                Add Sports Event
             </button>
 
         </form>
-        <button id="atl-delete-btn" onclick="window.location.href='/delete-event'">Delete Athletic Event</button>
+        <button id="atl-delete-btn" onclick="window.location.href='/delete-sports-event'">Delete Sports Event</button>
     </div>
     <div class="csv-upload-container">
-    <h2>Upload Athletic Events (CSV)</h2>
+    <h2>Upload Sports Events (CSV)</h2>
     <p>Formate:eventName,date,time,judges</p>
 
-    <form action="/manage-athletic" method="POST" enctype="multipart/form-data" class="csv-form">
+    <form action="/manage-sports" method="POST" enctype="multipart/form-data" class="csv-form">
         
         <label class="file-label">
             Select CSV File

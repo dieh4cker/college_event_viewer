@@ -1,25 +1,21 @@
 {%extends "adminBase.html"%}
 {%block content%}
 <main class="content">
-            <div class="content-cards">
-                <div class="card">
-                    <div class="form">
-                        <form action="/notice" method="POST">
-                            <label for="fname">Notice Title: </label><br>
-                            <input type="text" id="fname" name="title" style="width:180px;"
-                                placeholder="Enter title"><br>
-                            <label for="lname">Description: </label><br>
-                            <textarea id="lname" name="desc" rows="5" style="width:350px;"
-                                placeholder="Enter description"></textarea><br><br>
-                            <input type="submit" value="Submit">
-                        </form>
-                        <button id="delete-btn" onclick="window.location.href='/delete-notice'">Delete Notice </button>
-                    </div>
-                </div>
+    <div class="athletic-wrapper">
+        <div class="admin-event-form">
+            <div class="form">
+                <form action="/notice" method="POST">
+                    <label for="fname">Notice Title: </label><br>
+                    <input type="text" id="fname" name="title" style="width:180px;" placeholder="Enter title"><br>
+                    <label for="lname">Description: </label><br>
+                    <textarea id="lname" name="desc" rows="5" style="width:350px;"
+                        placeholder="Enter description"></textarea><br><br>
+                    <input type="submit" value="Submit">
+                </form>
+                <button id="delete-btn" onclick="window.location.href='/delete-notice'">Delete Notice </button>
             </div>
-
-
+        </div>
     </div>
-    </div>
-    </main>
+</main>
+
 {%endblock%}

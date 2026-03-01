@@ -31,6 +31,13 @@ class Athletic(db.Model):
     time = db.Column(db.String(50), nullable=False)
     judges = db.Column(db.String(500), nullable=False)
 
+class Sports(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    eventName = db.Column(db.String(50), nullable=False)
+    date = db.Column(db.String(50), nullable=False)
+    time = db.Column(db.String(50), nullable=False)
+    judges = db.Column(db.String(500), nullable=False)
+
 #client side page 
 @app.route("/")
 def index():
@@ -50,6 +57,20 @@ def athletic():
             event.time, "%H:%M"
         ).strftime("%I:%M %p")
     return render_template('athletic.html' , events=eventdata)
+
+@app.route("/sports")
+def sports():
+    eventdata = Sports.query.all()
+
+    for event in eventdata:
+        event.formatted_date = datetime.strptime(
+            event.date, "%Y-%m-%d"
+        ).strftime("%d-%m-%Y")
+
+        event.formatted_time = datetime.strptime(
+            event.time, "%H:%M"
+        ).strftime("%I:%M %p")
+    return render_template('sports.html' , events=eventdata)
 
 
 # admin page backend
@@ -80,8 +101,8 @@ def admin():
 
 @app.route("/register-admin", methods=['GET', 'POST'])
 def adminregister():
-    if 'admin' not in session:
-        return redirect("/admin-login")
+    # if 'admin' not in session:
+    #     return redirect("/admin-login")
     if request.method == 'POST':
         name = request.form.get('admin_name') 
         email  = request.form.get('email')
@@ -97,9 +118,6 @@ def logout():
         return redirect("/admin-login")
     session.pop('admin', None)
     return redirect("/admin-login")
-
-import csv
-from io import TextIOWrapper
 
 @app.route("/manage-athletic", methods=['GET', 'POST'])
 def add_event():
@@ -175,6 +193,81 @@ def delete_event(id):
         db.session.delete(eventdata)
         db.session.commit()
     return redirect("/delete-event")
+
+@app.route("/manage-sports", methods=['GET', 'POST'])
+def add_sports_event():
+
+    if 'admin' not in session:
+        return redirect("/admin-login")
+
+    if request.method == "POST":
+
+        if "csv_file" in request.files:
+
+            file = request.files.get("csv_file")
+
+            if file and file.filename.endswith(".csv"):
+
+                csv_file = TextIOWrapper(file, encoding="utf-8")
+                reader = csv.DictReader(csv_file)
+
+                for row in reader:
+                    new_event = Sports(
+                        eventName=row["eventName"],
+                        date=row["date"],
+                        time=row["time"],
+                        judges=row["judges"]
+                    )
+                    db.session.add(new_event)
+
+                db.session.commit()
+                return redirect("/manage-sports")
+
+        else:
+            name = request.form.get('event_name')
+            date = request.form.get('event_date')
+            time = request.form.get('event_time')
+            judges = request.form.get('judges')
+
+            event_data = Sports(
+                eventName=name,
+                date=date,
+                time=time,
+                judges=judges
+            )
+
+            db.session.add(event_data)
+            db.session.commit()
+
+            return redirect("/manage-sports")
+
+    return render_template("sports-manage.html")
+
+@app.route("/delete-sports-event")
+def manage_sports_event():
+    if 'admin' not in session:
+        return redirect("/admin-login")
+    eventdata = Sports.query.all()
+
+    for event in eventdata:
+        event.formatted_date = datetime.strptime(
+            event.date, "%Y-%m-%d"
+        ).strftime("%d-%m-%Y")
+
+        event.formatted_time = datetime.strptime(
+            event.time, "%H:%M"
+        ).strftime("%I:%M %p")
+    return render_template("deleteSportsEvent.html", events=eventdata)
+
+@app.route("/delete-sports-event/<int:id>", methods=['GET','POST'])
+def delete_sports_event(id):
+    if 'admin' not in session:
+        return redirect("/admin-login")
+    eventdata = Sports.query.get(id)
+    if eventdata:
+        db.session.delete(eventdata)
+        db.session.commit()
+    return redirect("/delete-sports-event")
 
 @app.route("/notice", methods=['GET', 'POST'])
 def notice():
