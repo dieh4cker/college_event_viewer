@@ -8,15 +8,14 @@
   <link rel="stylesheet" href="{{ url_for('static', filename='Style.css') }}">
   <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Margarine&display=swap" rel="stylesheet">
 </head>
 <body>
   <header class="header">
+    <button class="mobile-menu-toggle" id="mobile-menu-toggle" aria-label="Toggle menu">☰</button>
     <div class="header-left">
-      <h1> College Event Viewer(Govt.Polytechnic Hamirpur)</h1>
+      <h1><a href="/" class="header-title-link">College Event Viewer (Govt. Polytechnic Hamirpur)</a></h1>
     </div>
-      </form>
-    </div>
+    <div class="header-right"></div>
   </header>
 
   <div class="main">
@@ -41,16 +40,17 @@
     // Mobile sidebar toggle
     const toggle = document.getElementById('mobile-menu-toggle');
     const sidebar = document.getElementById('sidebar');
-    toggle.addEventListener('click', () => {
-      sidebar.classList.toggle('open');
-    });
+    if (toggle && sidebar) {
+      toggle.addEventListener('click', () => {
+        sidebar.classList.toggle('open');
+      });
 
-    // Search bar placeholder functionality
-    const searchForm = document.getElementById('search-form');
-    searchForm.addEventListener('submit', (e) => {
-      e.preventDefault();
-      alert('Search functionality not implemented yet.');
-    });
+      sidebar.querySelectorAll('a').forEach((link) => {
+        link.addEventListener('click', () => {
+          sidebar.classList.remove('open');
+        });
+      });
+    }
   </script>
 </body>
 </html>
