@@ -201,6 +201,47 @@ body {
   box-shadow: var(--shadow-soft);
 }
 
+.card-ect {
+  height:200px;
+  width:500px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 24px;
+  box-shadow: var(--shadow-soft);
+}
+
+.card-eht {
+  margin-top:12px;
+    height:200px;
+  width:500px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 24px;
+  box-shadow: var(--shadow-soft);
+}
+
+.card-eft {
+  margin-top:12px;
+    height:200px;
+  width:500px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 24px;
+  box-shadow: var(--shadow-soft);
+}
+
+.card-2 {
+  margin-top:12px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 24px;
+  box-shadow: var(--shadow-soft);
+}
+
 .card h1 {
   margin-bottom: 8px;
   color: var(--primary);
@@ -210,6 +251,11 @@ body {
 .card p {
   color: var(--muted);
   font-size: 1rem;
+}
+
+.card-2 pre {
+  color: var(--muted);
+  font-size: 1.2rem;
 }
 
 .event-container {

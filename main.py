@@ -72,6 +72,10 @@ def sports():
         ).strftime("%I:%M %p")
     return render_template('sports.html' , events=eventdata)
 
+@app.route("/examination")
+def examination():
+    return render_template('examination.html')
+
 
 # admin page backend
 @app.route("/admin-login", methods=['GET', 'POST'])
