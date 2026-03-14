@@ -83,12 +83,10 @@ def sports():
         ).strftime("%I:%M %p")
     return render_template('sports.html' , events=eventdata)
 
-<<<<<<< HEAD
 @app.route("/examination")
 def examination():
     return render_template('examination.html')
 
-=======
 @app.route("/event-register" , methods=['GET', 'POST'])
 def event_register():
     reg_type = request.args.get("type")
@@ -110,14 +108,14 @@ def event_register():
         phone_no = request.form.get('phone')
         sbrn = request.form.get('rollno')
         games = request.form.getlist('games')
+        games_str = ", ".join(games)
         event_type = request.form.get("event_type")
-        registered_data = GamesRegister(name=name , branch = branch , email=email, semester=semester , phone =phone_no , sbrn=sbrn , game=game, event_type=event_type)
+        registered_data = GamesRegister(name=name , branch = branch , email=email, semester=semester , phone =phone_no , sbrn=sbrn , game=games_str, event_type=event_type)
         db.session.add(registered_data)
         db.session.commit()
         return redirect("/event-register?type=" + event_type)
 
     return render_template('registration.html' , events=eventdata , reg_type=reg_type)
->>>>>>> b0bd1a2 (created registration form for event registration and created database for registered data with fully working)
 
 # admin page backend
 @app.route("/admin-login", methods=['GET', 'POST'])
