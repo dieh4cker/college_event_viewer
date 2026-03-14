@@ -1,8 +1,11 @@
-from flask import Flask, render_template,request,flash,redirect,url_for,session
+from flask import Flask, render_template,request,flash,redirect,url_for,session,send_file
 from datetime import datetime
 from flask_sqlalchemy import SQLAlchemy
 import csv
-from io import TextIOWrapper
+from reportlab.platypus import SimpleDocTemplate, Table, TableStyle, Paragraph, Spacer
+from reportlab.lib.styles import getSampleStyleSheet
+from reportlab.lib import colors
+import io
 
 app = Flask(__name__, template_folder="templates", static_folder="static")
 
@@ -145,8 +148,8 @@ def admin():
 
 @app.route("/register-admin", methods=['GET', 'POST'])
 def adminregister():
-    # if 'admin' not in session:
-    #     return redirect("/admin-login")
+    if 'admin' not in session:
+        return redirect("/admin-login")
     if request.method == 'POST':
         name = request.form.get('admin_name') 
         email  = request.form.get('email')
@@ -338,11 +341,105 @@ def manage_notice():
 def delete_notice(id):
     if 'admin' not in session:
         return redirect("/admin-login")
+    
     notice = Notice.query.get(id)
     if notice:
         db.session.delete(notice)
         db.session.commit()
     return redirect("/delete-notice")
+
+@app.route("/manage-registered")
+def manage_registered():
+    if 'admin' not in session:
+        return redirect("/admin-login")
+    
+    sports_events = Sports.query.all()
+    athletic_events = Athletic.query.all()
+
+    users = GamesRegister.query.all()
+    return render_template('registration-manage.html',  users=users , sports=sports_events,
+    athletics=athletic_events)
+
+@app.route("/download-filtered-pdf", methods=["POST"])
+def download_filtered_pdf():
+
+    payload = request.json
+
+    data = payload["rows"]
+    game = payload["game"]
+
+    buffer = io.BytesIO()
+
+    styles = getSampleStyleSheet()
+
+    elements = []
+
+    title = Paragraph(f"{game} Registration List", styles['Title'])
+    elements.append(title)
+    elements.append(Spacer(1,20))
+
+    table_data = [["Name","Branch","Semester","Email","Phone","Game"]]
+
+    for row in data:
+        table_data.append([
+            row["name"],
+            row["branch"],
+            row["semester"],
+            row["email"],
+            row["phone"],
+            row["game"]
+        ])
+
+    table = Table(table_data)
+
+    table.setStyle(TableStyle([
+
+        ('BACKGROUND',(0,0),(-1,0),colors.darkblue),
+        ('TEXTCOLOR',(0,0),(-1,0),colors.white),
+
+        ('GRID',(0,0),(-1,-1),1,colors.grey),
+
+        ('FONTNAME',(0,0),(-1,0),'Helvetica-Bold'),
+
+        ('ALIGN',(0,0),(-1,-1),'CENTER'),
+
+        ('BACKGROUND',(0,1),(-1,-1),colors.whitesmoke),
+
+        ('BOTTOMPADDING',(0,0),(-1,0),12)
+
+    ]))
+
+    elements.append(table)
+
+    elements.append(Spacer(1,20))
+
+    total = Paragraph(f"Total Participants: {len(data)}", styles['Heading3'])
+    elements.append(total)
+
+    pdf = SimpleDocTemplate(buffer)
+
+    pdf.build(elements)
+
+    buffer.seek(0)
+
+    return send_file(
+        buffer,
+        as_attachment=True,
+        download_name="participants.pdf",
+        mimetype="application/pdf"
+    )
+
+@app.route("/clear-registrations", methods=["POST"])
+def clear_registrations():
+
+    if 'admin' not in session:
+        return redirect("/admin-login")
+
+    GamesRegister.query.delete()
+
+    db.session.commit()
+
+    return redirect("/manage-registered")
 
 if __name__ == "__main__":
     with app.app_context():

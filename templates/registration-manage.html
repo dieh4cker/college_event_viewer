@@ -1,0 +1,84 @@
+{%extends "adminBase.html"%}
+{%block content%}
+<main class="content">
+    <div class="admin-container">
+
+        <h2>Registered Participants</h2>
+
+        <div class="controls">
+
+            <select id="gameFilter">
+
+                <optgroup label="Athletics">
+                    {% for event in athletics %}
+                    <option value="{{ event.eventName }}">{{ event.eventName }}</option>
+                    {% endfor %}
+                </optgroup>
+
+                <optgroup label="Sports">
+                    {% for event in sports %}
+                    <option value="{{ event.eventName }}">{{ event.eventName }}</option>
+                    {% endfor %}
+                </optgroup>
+
+            </select>
+
+            <button class="download-btn" onclick="downloadFilteredPDF()">
+                Download PDF
+            </button>
+            <button onclick="clearFilter()" class="download-btn">
+                Clear Filter
+            </button>
+        </div>
+
+
+        <table id="studentsTable">
+
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Branch</th>
+                    <th>Semester</th>
+                    <th>Email</th>
+                    <th>Phone</th>
+                    <th>Game</th>
+                </tr>
+            </thead>
+
+            <tbody>
+
+                {% for user in users %}
+
+                <tr>
+                    <td>{{ user.name }}</td>
+                    <td>{{ user.branch }}</td>
+                    <td>{{ user.semester }}</td>
+                    <td>{{ user.email }}</td>
+                    <td>{{ user.phone }}</td>
+                    <td>{{ user.game }}</td>
+                </tr>
+
+                {% endfor %}
+
+            </tbody>
+
+        </table>
+        <form action="/clear-registrations" method="POST"
+            onsubmit="return confirm('Are you sure? All registrations will be deleted!')">
+            <button class="clear-btn">Clear All</button>
+        </form>
+
+    </div>
+
+
+    </div>
+    </div>
+</main>
+{%endblock%}
+
+{% block scripts %}
+
+<script src="{{ url_for('static', filename='js/registerFilter.js') }}"></script>
+<script src="{{ url_for('static', filename='js/pdfdata.js') }}"></script>
+
+{% endblock %}

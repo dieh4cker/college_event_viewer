@@ -202,35 +202,47 @@ body {
 }
 
 .card-ect {
-  height: 850px;
-  width: 1230px;
+  height: auto;
+  font-size: 22px;
+  width: min(100%, 1230px);
+  max-width: 100%;
   background: var(--surface);
   border: 1px solid var(--border);
   border-radius: 16px;
   padding: 24px;
   box-shadow: var(--shadow-soft);
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
 }
 
 .card-eht {
   margin-top: 12px;
-  height: 730px;
-  width: 1230px;
+  height: auto;
+  font-size: 22px;
+  width: min(100%, 1230px);
+  max-width: 100%;
   background: var(--surface);
   border: 1px solid var(--border);
   border-radius: 16px;
   padding: 24px;
   box-shadow: var(--shadow-soft);
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
 }
 
 .card-eft {
   margin-top: 12px;
-  height: 730px;
-  width: 1230px;
+  height: auto;
+  font-size: 22px;
+  width: min(100%, 1230px);
+  max-width: 100%;
   background: var(--surface);
   border: 1px solid var(--border);
   border-radius: 16px;
   padding: 24px;
   box-shadow: var(--shadow-soft);
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
 }
 
 .card-2 {
@@ -255,7 +267,16 @@ body {
 
 .card-2 pre {
   color: var(--muted);
-  font-size: 1.2rem;
+  max-width: 100%;
+  font-size: clamp(0.95rem, 2vw, 1.2rem);
+  white-space: pre-wrap;
+  word-break: break-word;
+  overflow-wrap: anywhere;
+  overflow-x: auto;
+}
+
+.card-2 pre a {
+  overflow-wrap: anywhere;
 }
 
 .event-container {
@@ -577,6 +598,13 @@ body {
     margin-bottom: 16px;
   }
 
+  .card-ect,
+  .card-eht,
+  .card-eft,
+  .card-2 {
+    padding: 20px;
+  }
+
   .registration-grid,
   .games-grid {
     grid-template-columns: 1fr;
@@ -595,6 +623,13 @@ body {
 
   .event-container {
     padding: 14px;
+  }
+
+  .card-ect,
+  .card-eht,
+  .card-eft,
+  .card-2 {
+    padding: 16px;
   }
 
   .event-table {
@@ -634,6 +669,12 @@ body {
 
   .registration-form .games-section .game-option {
     padding: 12px 14px;
+  }
+
+  .schedule-table th,
+  .schedule-table td {
+    padding: 8px;
+    font-size: 0.88rem;
   }
 }
 
