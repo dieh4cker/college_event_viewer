@@ -1,0 +1,97 @@
+{%extends "clientBase.html"%}
+
+{%block content%}
+<main class="content registration-page">
+    <section class="registration-shell">
+        <div class="registration-container">
+            <div class="registration-header">
+                <p class="registration-kicker">College Meet</p>
+                <h2>Registration Form</h2>
+                <p class="registration-subtitle">
+                    Fill in your details carefully and select the event you want to participate in.
+                </p>
+            </div>
+
+            <form action="/event-register" method="POST" class="registration-form">
+                <div class="registration-grid">
+                    <div class="form-group">
+                        <label for="full_name">Full Name</label>
+                        <input id="full_name" class="field-control" type="text" name="full_name"
+                            placeholder="Enter your full name" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="branch">Branch</label>
+                        <select id="branch" class="field-control" name="branch" required>
+                            <option value="">Select Branch</option>
+                            <option>CSE</option>
+                            <option>Mechanical</option>
+                            <option>Electrical</option>
+                            <option>Civil</option>
+                            <option>Electronics</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="semester">Semester</label>
+                        <select id="semester" class="field-control" name="semester" required>
+                            <option value="">Select Semester</option>
+                            <option>1</option>
+                            <option>2</option>
+                            <option>3</option>
+                            <option>4</option>
+                            <option>5</option>
+                            <option>6</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input id="email" class="field-control" type="email" name="email" placeholder="Enter your email"
+                            required>
+                    </div>
+
+                    <div class="form-group registration-grid-span">
+                        <label for="phone">Phone Number</label>
+                        <input id="phone" class="field-control" type="tel" name="phone"
+                            placeholder="Enter your phone number" required>
+                    </div>
+                    <div class="form-group registration-grid-span">
+                        <label for="rollno">SBRN Number</label>
+                        <input id="rollno" class="field-control" type="tel" name="rollno"
+                            placeholder="Enter your SBRN number" required>
+                    </div>
+                </div>
+
+                <fieldset class="games-section">
+                    <legend>Interested Game</legend>
+                    <p class="games-note">Choose only one events you want to play.</p>
+                    <div class="games-grid">
+                        {% if reg_type == "athletic" %}
+                        {% for event in events %}
+                        <label class="game-option" for="game-{{ event.id }}">
+                            <input id="game-{{ event.id }}" type="checkbox" name="games" value="{{ event.eventName }}">
+                            <span>{{ event.eventName}}</span>
+                        </label>
+                        {% endfor %}
+
+                        {% endif %}
+                        {% if reg_type == "sports" %}
+                        {% for event in events %}
+                        <label class="game-option" for="game-{{ event.id }}">
+                            <input id="game-{{ event.id }}" type="checkbox" name="games" value="{{ event.eventName }}">
+                            <span>{{ event.eventName}}</span>
+                        </label>
+                        {% endfor %}
+
+                        {% endif %}
+                    </div>
+                </fieldset>
+
+                <button type="submit" class="register-btn registration-submit">Register</button>
+                <input type="hidden" name="event_type" value="{{ reg_type }}">
+            </form>
+        </div>
+    </section>
+</main>
+{%endblock%}

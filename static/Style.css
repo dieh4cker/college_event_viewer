@@ -345,6 +345,190 @@ body {
   width: 35%;
 }
 
+.registration-page {
+  display: flex;
+  justify-content: center;
+}
+
+.registration-shell {
+  width: min(100%, 960px);
+}
+
+.registration-container {
+  width: min(100%, 860px);
+  margin: 0 auto;
+  padding: clamp(24px, 4vw, 38px);
+  border-radius: 24px;
+  border: 1px solid rgba(21, 77, 115, 0.12);
+  background:
+    radial-gradient(circle at top right, rgba(185, 119, 42, 0.14), transparent 30%),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.98) 0%, #f7fbff 100%);
+  box-shadow: 0 20px 40px rgba(14, 47, 71, 0.12);
+}
+
+.registration-header {
+  margin-bottom: 26px;
+  text-align: center;
+}
+
+.registration-kicker {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 6px 14px;
+  border-radius: 999px;
+  background: rgba(21, 77, 115, 0.1);
+  color: var(--primary);
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.registration-container h2 {
+  margin: 14px 0 10px;
+  color: var(--primary-strong);
+  font-size: clamp(1.8rem, 3vw, 2.4rem);
+  line-height: 1.2;
+}
+
+.registration-subtitle {
+  max-width: 48ch;
+  margin: 0 auto;
+  font-weight: 700;
+  color: var(--muted);
+  font-size: 1rem;
+}
+
+.registration-form {
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+}
+
+.registration-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
+}
+
+.registration-grid-span {
+  grid-column: 1 / -1;
+}
+
+.registration-form .form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.registration-form .form-group label {
+  font-weight: 600;
+  color: var(--primary-strong);
+}
+
+.field-control {
+  width: 100%;
+  min-height: 50px;
+  padding: 12px 14px;
+  border: 1px solid #cfdbe6;
+  border-radius: 14px;
+  background: #ffffff;
+  color: var(--text);
+  font: inherit;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
+}
+
+.field-control::placeholder {
+  color: #8394a5;
+}
+
+.field-control:focus {
+  outline: none;
+  border-color: rgba(21, 77, 115, 0.55);
+  box-shadow: 0 0 0 4px rgba(21, 77, 115, 0.12);
+  background: #fcfeff;
+}
+
+.games-section {
+  margin: 0;
+  padding: 20px;
+  border: 1px solid #dce7f1;
+  border-radius: 20px;
+  background: linear-gradient(180deg, #f8fbfe 0%, #eef5fb 100%);
+}
+
+.games-section legend {
+  padding: 0 10px;
+  color: var(--primary);
+  font-weight: 700;
+  font-size: 1rem;
+}
+
+.games-note {
+  margin-bottom: 14px;
+  color: var(--muted);
+  font-size: 0.95rem;
+}
+
+.games-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.registration-form .games-section .game-option {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  margin: 0;
+  height: 100%;
+  min-height: 64px;
+  padding: 14px 16px;
+  border: 1px solid #d8e4ee;
+  border-radius: 14px;
+  background: #ffffff;
+  cursor: pointer;
+  transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.registration-form .games-section .game-option:hover,
+.registration-form .games-section .game-option:focus-within {
+  transform: translateY(-1px);
+  border-color: rgba(21, 77, 115, 0.4);
+  box-shadow: 0 12px 20px rgba(12, 44, 69, 0.08);
+}
+
+.registration-form .games-section .game-option input {
+  width: 18px;
+  height: 18px;
+  margin: 0;
+  accent-color: var(--primary);
+  flex-shrink: 0;
+}
+
+.registration-form .games-section .game-option span {
+  font-weight: 600;
+  color: var(--text);
+  line-height: 1.45;
+  word-break: break-word;
+}
+
+.registration-submit {
+  align-self: flex-end;
+  width: min(100%, 220px);
+  margin-top: 2px;
+  padding: 14px 18px;
+  border-radius: 14px;
+  background: linear-gradient(135deg, #154d73 0%, #0f3956 100%);
+  box-shadow: 0 14px 26px rgba(15, 57, 86, 0.24);
+}
+
+.registration-submit:hover,
+.registration-submit:focus-visible {
+  box-shadow: 0 18px 30px rgba(15, 57, 86, 0.3);
+}
+
 @media (max-width: 900px) {
   :root {
     --header-height: 88px;
@@ -392,6 +576,16 @@ body {
   .notification-banner {
     margin-bottom: 16px;
   }
+
+  .registration-grid,
+  .games-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .registration-submit {
+    align-self: stretch;
+    width: 100%;
+  }
 }
 
 @media (max-width: 600px) {
@@ -416,6 +610,31 @@ body {
   .register-btn {
     width: 100%;
   }
+
+  .registration-container {
+    padding: 20px 16px;
+    border-radius: 18px;
+  }
+
+  .registration-header {
+    margin-bottom: 22px;
+  }
+
+  .registration-container h2 {
+    font-size: 1.6rem;
+  }
+
+  .registration-subtitle {
+    font-size: 0.95rem;
+  }
+
+  .games-section {
+    padding: 16px;
+  }
+
+  .registration-form .games-section .game-option {
+    padding: 12px 14px;
+  }
 }
 
 @media (max-width: 420px) {
@@ -438,6 +657,17 @@ body {
 
   .event-table {
     min-width: 500px;
+  }
+
+  .registration-kicker {
+    width: 100%;
+    font-size: 0.76rem;
+    letter-spacing: 0.06em;
+  }
+
+  .field-control {
+    min-height: 46px;
+    padding: 11px 12px;
   }
 }
 .schedule-table{

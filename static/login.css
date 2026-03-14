@@ -5,7 +5,7 @@
   --muted: #5b6d80;
   --primary: #154d73;
   --primary-strong: #0f3956;
-  --accent: #b9772a;
+  --accent: #52b92a;
   --surface: #ffffff;
   --surface-soft: #f4f8fc;
   --border: #d5e1ec;
@@ -133,7 +133,7 @@ body {
   padding: 12px;
   border: none;
   border-radius: 10px;
-  background: linear-gradient(135deg, var(--accent), #996222);
+  background: linear-gradient(135deg, #2b8f58, #1f7044);
   color: #ffffff;
   font-size: 1rem;
   font-weight: 700;
@@ -144,7 +144,7 @@ body {
 .btn:hover,
 .btn:focus-visible {
   transform: translateY(-1px);
-  box-shadow: 0 9px 18px rgba(2, 15, 194, 0.35);
+  box-shadow: 0 9px 18px rgba(43, 143, 88, 0.35);
 }
 
 @media (max-width: 920px) {

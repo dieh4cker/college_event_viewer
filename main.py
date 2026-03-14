@@ -38,6 +38,17 @@ class Sports(db.Model):
     time = db.Column(db.String(50), nullable=False)
     judges = db.Column(db.String(500), nullable=False)
 
+class GamesRegister(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(50), nullable=False)
+    branch = db.Column(db.String(50), nullable=False)
+    semester = db.Column(db.String(500), nullable=False)
+    email = db.Column(db.String(50), nullable=False)
+    phone = db.Column(db.String(50), nullable=False)
+    sbrn = db.Column(db.String(50), nullable=False)
+    game = db.Column(db.String(50), nullable=False)
+    event_type = db.Column(db.String(50), nullable=False)
+
 #client side page 
 @app.route("/")
 def index():
@@ -72,10 +83,41 @@ def sports():
         ).strftime("%I:%M %p")
     return render_template('sports.html' , events=eventdata)
 
+<<<<<<< HEAD
 @app.route("/examination")
 def examination():
     return render_template('examination.html')
 
+=======
+@app.route("/event-register" , methods=['GET', 'POST'])
+def event_register():
+    reg_type = request.args.get("type")
+
+    if reg_type == "athletic":
+        eventdata = Athletic.query.all()
+
+    elif reg_type == "sports":
+        eventdata = Sports.query.all()
+
+    else:
+        eventdata = []
+   
+    if request.method == 'POST':
+        name = request.form.get('full_name')
+        branch = request.form.get('branch')
+        email = request.form.get('email')
+        semester = request.form.get('semester')
+        phone_no = request.form.get('phone')
+        sbrn = request.form.get('rollno')
+        games = request.form.getlist('games')
+        event_type = request.form.get("event_type")
+        registered_data = GamesRegister(name=name , branch = branch , email=email, semester=semester , phone =phone_no , sbrn=sbrn , game=game, event_type=event_type)
+        db.session.add(registered_data)
+        db.session.commit()
+        return redirect("/event-register?type=" + event_type)
+
+    return render_template('registration.html' , events=eventdata , reg_type=reg_type)
+>>>>>>> b0bd1a2 (created registration form for event registration and created database for registered data with fully working)
 
 # admin page backend
 @app.route("/admin-login", methods=['GET', 'POST'])
