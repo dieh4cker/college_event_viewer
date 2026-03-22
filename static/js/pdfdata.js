@@ -38,7 +38,7 @@ function downloadFilteredPDF() {
             let url = window.URL.createObjectURL(blob)
             let a = document.createElement("a")
             a.href = url
-            a.download = "participants.pdf"
+            a.download = `${selectedGame}_participants.pdf`
             a.click()
 
         })

@@ -479,7 +479,7 @@ def download_filtered_pdf():
     return send_file(
         buffer,
         as_attachment=True,
-        download_name="participants.pdf",
+        download_name=f"{game}_participants.pdf",
         mimetype="application/pdf"
     )
 
