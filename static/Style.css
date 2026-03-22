@@ -552,9 +552,10 @@ body {
 }
 
 .contact-container {
-  margin: 12px;
-  width: 500px;
-  height: 600px;
+  width: min(100%, 500px);
+  max-width: 100%;
+  min-height: 600px;
+  margin: 12px auto;
   background: white;
   padding: 30px;
   border-radius: 12px;
@@ -573,16 +574,17 @@ body {
   gap: 15px;
 }
 
-.input-group label {
+.contact-form .input-group label {
   font-weight: 600;
   margin-bottom: 5px;
-  font-size: 22px;
+  font-size: clamp(1rem, 2vw, 1.375rem);
 }
 
-.input-group input,
-.input-group textarea {
+.contact-form .input-group input,
+.contact-form .input-group textarea {
   width: 100%;
-  font-size: 19px;
+  max-width: 100%;
+  font-size: clamp(1rem, 1.8vw, 1.1875rem);
   padding: 10px;
   border: 1px solid #ccc;
   border-radius: 6px;
@@ -590,8 +592,13 @@ body {
   transition: 0.2s;
 }
 
-.input-group input:focus,
-.input-group textarea:focus {
+.contact-form .input-group textarea {
+  min-height: 140px;
+  resize: vertical;
+}
+
+.contact-form .input-group input:focus,
+.contact-form .input-group textarea:focus {
   border-color: #002b5c;
   box-shadow: 0 0 5px rgba(0, 43, 92, 0.2);
 }
@@ -604,7 +611,7 @@ body {
   border: none;
   border-radius: 8px;
   font-weight: bold;
-  font-size: 22px;
+  font-size: clamp(1rem, 2vw, 1.375rem);
   cursor: pointer;
   transition: 0.3s;
 }
@@ -678,6 +685,11 @@ body {
     align-self: stretch;
     width: 100%;
   }
+
+  .contact-container {
+    min-height: auto;
+    padding: 24px 20px;
+  }
 }
 
 @media (max-width: 600px) {
@@ -735,6 +747,20 @@ body {
     padding: 12px 14px;
   }
 
+  .contact-container {
+    margin: 0 auto;
+    padding: 20px 16px;
+    border-radius: 16px;
+  }
+
+  .contact-form {
+    gap: 12px;
+  }
+
+  .contact-btn {
+    width: 100%;
+  }
+
   .schedule-table th,
   .schedule-table td {
     padding: 8px;
@@ -773,6 +799,10 @@ body {
   .field-control {
     min-height: 46px;
     padding: 11px 12px;
+  }
+
+  .contact-container {
+    padding: 18px 14px;
   }
 }
 
