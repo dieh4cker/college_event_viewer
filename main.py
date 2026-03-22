@@ -1,11 +1,11 @@
 from flask import Flask, render_template,request,flash,redirect,url_for,session,send_file
 from datetime import datetime
 from flask_sqlalchemy import SQLAlchemy
-import csv
+import csv,io
 from reportlab.platypus import SimpleDocTemplate, Table, TableStyle, Paragraph, Spacer
 from reportlab.lib.styles import getSampleStyleSheet
 from reportlab.lib import colors
-import io
+from io import TextIOWrapper
 from collections import Counter
 
 app = Flask(__name__, template_folder="templates", static_folder="static")
