@@ -1,10 +1,43 @@
 {%extends "adminBase.html"%}
 {%block content%}
 <main class="content">
-            
+    <div class="dashboard">
 
 
+        <div class="stats">
+
+            <div class="card">👥 {{ total_users }}<br>Total Participants</div>
+            <div class="card">🏃 {{ total_athletic }}<br>Total Athletic Events</div>
+            <div class="card">🏏 {{ total_sports }}<br>Total Sports Events</div>
+
+        </div>
+
+        <div class="charts">
+
+            <div class="chart-box">
+                <h3>Participants per Game</h3>
+                <canvas id="gameChart"></canvas>
+            </div>
+
+            <div class="chart-box">
+                <h3>Branch Wise Participation</h3>
+                <canvas id="branchChart"></canvas>
+            </div>
+
+        </div>
+
     </div>
-    </div>
-    </main>
+</main>
+
 {%endblock%}
+{% block scripts %}
+<script>
+    const gameLabels = {{ game_labels | tojson }};
+    const gameData = {{ game_values | tojson }};
+    const branchLabels = {{ branch_labels | tojson }};
+    const branchData = {{ branch_values | tojson }};
+</script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="{{ url_for('static', filename='js/graph.js') }}"></script>
+
+{% endblock %}

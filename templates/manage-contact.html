@@ -1,0 +1,36 @@
+{%extends "adminBase.html"%}
+{%block content%}
+<main class="content">
+    <div class="delete-container">
+        <h2>Manage Contact</h2>
+
+        <table class="notice-table">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Query</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for data in contactdata %}
+                <tr>
+                    <td>{{ loop.index }}</td>
+                    <td>{{ data.name }}</td>
+                    <td>{{ data.email}}</td>
+                    <td>{{ data.message }}</td>
+                    <td>
+                        <form action="/delete-contact/{{ data.sno }}" method="POST">
+                            <button class="delete-btn">Delete</button>
+                        </form>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+    </div>
+</main>
+{%endblock%}

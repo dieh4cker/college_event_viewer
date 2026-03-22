@@ -6,6 +6,7 @@ from reportlab.platypus import SimpleDocTemplate, Table, TableStyle, Paragraph, 
 from reportlab.lib.styles import getSampleStyleSheet
 from reportlab.lib import colors
 import io
+from collections import Counter
 
 app = Flask(__name__, template_folder="templates", static_folder="static")
 
@@ -15,10 +16,6 @@ app.secret_key = "king-754345"
 
 db = SQLAlchemy(app)
 
-class Notice(db.Model):
-    sno = db.Column(db.Integer, primary_key=True, autoincrement=True)
-    title = db.Column(db.String(200), nullable=False)
-    desc = db.Column(db.String(5000), nullable=False)
 
 class Admin(db.Model):
     __tablename__ = 'admin'
@@ -26,6 +23,11 @@ class Admin(db.Model):
     name = db.Column(db.String(50), nullable=False)
     email = db.Column(db.String(50), nullable=False)
     passwd = db.Column(db.String(50), nullable=False)
+
+class Notice(db.Model):
+    sno = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    title = db.Column(db.String(200), nullable=False)
+    desc = db.Column(db.String(5000), nullable=False)
 
 class Athletic(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -40,6 +42,12 @@ class Sports(db.Model):
     date = db.Column(db.String(50), nullable=False)
     time = db.Column(db.String(50), nullable=False)
     judges = db.Column(db.String(500), nullable=False)
+
+class Contact(db.Model):
+    sno = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    name = db.Column(db.String(200), nullable=False)
+    email = db.Column(db.String(500), nullable=False)
+    message = db.Column(db.String(500), nullable=False)
 
 class GamesRegister(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -120,6 +128,21 @@ def event_register():
 
     return render_template('registration.html' , events=eventdata , reg_type=reg_type)
 
+@app.route("/contact", methods=['GET', 'POST'])
+def contact():
+
+    if request.method == 'POST':
+        name = request.form.get("name")
+        email = request.form.get("email")
+        message = request.form.get("message")
+
+        data = Contact(name=name,email=email,message=message)
+        db.session.add(data)
+        db.session.commit()
+        return redirect("/contact")
+
+    return render_template('contact.html')
+
 # admin page backend
 @app.route("/admin-login", methods=['GET', 'POST'])
 def admin_login():
@@ -141,10 +164,41 @@ def admin_login():
     return render_template("admin-login.html")
 
 @app.route("/admin")
-def admin():
+def admin_dashboard():
+
     if 'admin' not in session:
         return redirect("/admin-login")
-    return render_template("admin.html")
+
+    users = GamesRegister.query.all()
+
+    total_users = len(users)
+    total_athletic = Athletic.query.count()
+    total_sports = Sports.query.count()
+
+    game_list = []
+    for u in users:
+        for g in u.game.split(","):
+            game_list.append(g.strip())
+
+    game_counts = Counter(game_list)
+
+    game_labels = list(game_counts.keys())
+    game_values = list(game_counts.values())
+
+    branch_counts = Counter([u.branch for u in users])
+    branch_labels = list(branch_counts.keys())
+    branch_values = list(branch_counts.values())
+
+    return render_template(
+        "admin.html",
+        total_users=total_users,
+        total_athletic=total_athletic,
+        total_sports=total_sports,
+        game_labels=game_labels,
+        game_values=game_values,
+        branch_labels=branch_labels,
+        branch_values=branch_values
+    )
 
 @app.route("/register-admin", methods=['GET', 'POST'])
 def adminregister():
@@ -440,6 +494,26 @@ def clear_registrations():
     db.session.commit()
 
     return redirect("/manage-registered")
+
+@app.route("/manage-contact")
+def maanage_contact():
+    if 'admin' not in session:
+        return redirect("/admin-login")
+    
+    data=Contact.query.all()
+    return render_template('manage-contact.html',contactdata=data)
+
+@app.route("/delete-contact/<int:id>", methods=['GET','POST'])
+def delete_contact(id):
+    if 'admin' not in session:
+        return redirect("/admin-login")
+    
+    data = Contact.query.get(id)
+    if data:
+        db.session.delete(data)
+        db.session.commit()
+    return redirect("/manage-contact")
+
 
 if __name__ == "__main__":
     with app.app_context():
