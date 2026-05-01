@@ -514,6 +514,17 @@ body {
   transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
 }
 
+.fixed-btn-a{
+  height: 35px;
+  width: 130px;
+  position: fixed;
+  border: none;
+  border-radius: 6px;
+  bottom: 20px;
+  right: 20px;
+  background: #dc2626
+}
+
 .registration-form .games-section .game-option:hover,
 .registration-form .games-section .game-option:focus-within {
   transform: translateY(-1px);
@@ -619,6 +630,85 @@ body {
 .contact-btn:hover {
   transform: translateY(-2px);
   box-shadow: 0 5px 12px rgba(0, 0, 0, 0.2);
+}
+
+.container-s {
+  padding: 20px
+}
+
+.card-s {
+  background: white;
+  padding: 20px;
+  margin: 15px 0;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1)
+}
+
+button-s {
+  padding: 10px 20px;
+  margin: 10px;
+  border: none;
+  border-radius: 6px;
+  background: #2563eb;
+  color: white;
+  cursor: pointer
+}
+
+button-s:hover {
+  background: #1d4ed8
+}
+
+.hidden-s {
+  display: none
+}
+
+.trade-btn-s {
+  display: inline-block;
+  margin: 5px
+}
+
+.fixed-btn-s {
+  position: fixed;
+  border: none;
+  border-radius: 6px;
+  bottom: 20px;
+  right: 20px;
+  background: #dc2626
+}
+
+.semester-btn-s {
+  padding: 10px 20px;
+  margin: 10px;
+  border: none;
+  border-radius: 6px;
+  background: #2563eb;
+  color: white;
+  cursor: pointer
+}
+
+
+.semester-btn-s:hover {
+  background: #1d4ed8
+}
+
+img {
+  width: 100%;
+  border-radius: 10px;
+  margin: 10px 0
+}
+
+.button-s {
+  padding: 10px 20px;
+  margin: 10px;
+  border: none;
+  border-radius: 6px;
+  background: #2563eb;
+  color: white;
+  cursor: pointer
+}
+
+.button-s:hover {
+  background: #1d4ed8
 }
 
 @media (max-width: 900px) {

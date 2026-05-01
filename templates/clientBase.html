@@ -21,13 +21,13 @@
   <div class="main">
     <aside class="sidebar" id="sidebar">
       <ul>
+        <li><a href="/">Home</a></li>
         <li><a href="/athletic">Athletic</a></li>
         <li><a href="/sports">Sports</a></li>
         <li><a href="/examination">Examination</a></li>
-        <li><a href="daily.html">Daily</a></li>
-        <li><a href="studies-admission.html">Studies and Admission</a></li>
+        <li><a href="/study-admission">Studies and Admission</a></li>
         <div class="sidebar-spacer"></div>
-        <li><a href="about.html">About</a></li>
+        <li><a href="/about">About</a></li>
         <li><a href="/admin-login">Admin</a></li>
         <li><a href="/contact">Contact</a></li>
       </ul>
@@ -35,6 +35,8 @@
 
    {%block content%} {%endblock%}
   </div>
+  {% block scripts %}
+    {% endblock %}
 
   <script>
     // Mobile sidebar toggle

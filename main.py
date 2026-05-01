@@ -98,6 +98,14 @@ def sports():
 def examination():
     return render_template('examination.html')
 
+@app.route("/about")
+def about():
+    return render_template('about.html')
+
+@app.route("/study-admission")
+def studyAdmission():
+    return render_template('studies&admission.html')
+
 @app.route("/event-register" , methods=['GET', 'POST'])
 def event_register():
     reg_type = request.args.get("type")

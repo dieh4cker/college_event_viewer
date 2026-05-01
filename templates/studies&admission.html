@@ -1,0 +1,100 @@
+{%extends "clientBase.html"%}
+
+{%block content%}
+<main class="content">
+    <header>
+        <h1>Studies & Admission</h1>
+    </header>
+
+    <div class="container-s">
+
+        <!-- Main Options -->
+        <div class="card-s">
+            <h2>Select Option</h2>
+            <button class="button-s" onclick="showSection('studies')">Studies</button>
+            <button class="button-s" onclick="showSection('admission')">Admission</button>
+        </div>
+
+        <!-- Studies Section -->
+        <div id="studies" class="hidden card">
+            <h2>Studies at Government Polytechnic College</h2>
+            <p>Government Polytechnic Colleges provide quality diploma-level technical education for students who want
+                practical skills and strong career opportunities in engineering and technology fields. There are
+                different types of polytechnic colleges offering courses in Civil, Mechanical, Electrical, Computer,
+                Electronics, and Information Technology streams. Some of the top Government Polytechnic Colleges in
+                Himachal Pradesh include Government Polytechnic Sundernagar, Government Polytechnic Hamirpur, and
+                Government Polytechnic Kangra, known for their excellent education, skilled faculty, and good placement
+                opportunities. Government Polytechnic Hamirpur offers common and popular trades such as Computer
+                Engineering, Civil Engineering, Electrical Engineering, Mechanical Engineering, Information Technology
+                (IT), and Internet of Things (IOT), helping students build strong technical knowledge and industry-ready
+                skills. Along with academics, students also participate in sports, cultural activities, workshops,
+                seminars, and technical events that support overall personality development. These colleges focus on
+                discipline, practical learning, innovation, and preparing students for both higher studies and
+                successful careers in the professional world.</p>
+
+            <h3>Select Trade</h3>
+            <div>
+                <button class="button-s" onclick="showTrade('ce')">Computer Engineering</button>
+                <button class="button-s" onclick="showTrade('civil')">Civil Engineering</button>
+                <button class="button-s" onclick="showTrade('ee')">Electrical Engineering</button>
+                <button class="button-s" onclick="showTrade('me')">Mechanical Engineering</button>
+                <button class="button-s" onclick="showTrade('it')">IT</button>
+                <button class="button-s" onclick="showTrade('iot')">IOT</button>
+            </div>
+
+            <!-- Trade Content -->
+            <div id="tradeContent" class="hidden-s">
+                <h3 id="tradeTitle"></h3>
+                <p id="tradeDesc"></p>
+
+                <h4>Select Semester</h4>
+                <div id="semesterButtons"></div>
+
+                <div id="subjects"></div>
+            </div>
+
+            <!-- Timetable Section -->
+            <div class="card">
+                <h3>View Timetable</h3>
+                <p>Select semester to view timetable</p>
+                <div>
+                    <button class="button-s" onclick="showTimetable(1)">Sem 1</button>
+                    <button class="button-s" onclick="showTimetable(2)">Sem 2</button>
+                    <button class="button-s" onclick="showTimetable(3)">Sem 3</button>
+                    <button class="button-s" onclick="showTimetable(4)">Sem 4</button>
+                    <button class="button-s" onclick="showTimetable(5)">Sem 5</button>
+                    <button class="button-s" onclick="showTimetable(6)">Sem 6</button>
+                </div>
+                <div id="timetable"></div>
+            </div>
+        </div>
+
+        <!-- Admission Section -->
+        <div id="admission" class="hidden card">
+            <h2>Admission Process</h2>
+            <p>Admission to Government Polytechnic Colleges is done through entrance exams.</p>
+
+
+
+            <h3>Exams</h3>
+            <ul>
+                <li><b>PAT</b>: For 10th pass students</li>
+                <li><b>LEET</b>: For 12th science students (Direct 2nd Year Entry)</li>
+            </ul>
+
+            <h3>Preparation Tips</h3>
+            <p>Focus on basics of Mathematics, Science, and reasoning. Practice previous year papers and stay
+                consistent.
+            </p>
+
+            <button class="fixed-btn-a" onclick="window.open('https://www.hptechboard.com/online-admission-2017','_blank')">New Admission</button>
+        </div>
+
+    </div>
+</main>
+{%endblock%}
+
+{% block scripts %}
+<script src="{{ url_for('static', filename='js/studyAdmission.js') }}"></script>
+
+{% endblock %}
