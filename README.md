@@ -194,6 +194,28 @@ app.run(host="0.0.0.0", port=5000, debug=True)
 
 This means it listens on all network interfaces while running locally. In development, you can open it from the same machine using `http://127.0.0.1:5000` or `http://localhost:5000`.
 
+## Running with Docker
+
+Build the Docker image from the project root:
+
+```bash
+docker build -t college-event-viewer .
+```
+
+Run the container and map port 5000 to the host:
+
+```bash
+docker run --rm -p 5000:5000 college-event-viewer
+```
+
+The app will be available at:
+
+```text
+http://localhost:5000
+```
+
+The Docker setup uses `python:3.11-slim`, installs the Python dependencies from `requirements.txt`, copies the project files into the container, creates the `instance` directory for SQLite, and starts the Flask app on port 5000.
+
 ## Database
 
 The project uses SQLite through Flask-SQLAlchemy.
